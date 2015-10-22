@@ -24,7 +24,10 @@ It has built-in configurable tuners that handles minor settings, such as:
 ## Deploying
 
 ```bash
-docker run -d --privileged cusspvz/autotune
+docker run -d \
+    --privileged \
+    --volume /proc:/host/proc \
+    cusspvz/autotune
 ```
 
 

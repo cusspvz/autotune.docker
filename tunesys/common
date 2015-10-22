@@ -1,8 +1,9 @@
 #!/bin/bash
 
 setp () {
-    echo -ne "Setting up $1 to $2 ..."
     _PATH=$PROC/$1
+
+    echo -ne "Setting up $_PATH to $2 ..."
 
     # Don't set anything if path doesn't exist
     [ -f $_PATH ] && {

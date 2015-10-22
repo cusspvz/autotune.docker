@@ -1,10 +1,11 @@
 TAG := development
 IMAGE := cusspvz/autotune
 
-test:
+test: build
 	@docker run \
 		--rm -ti \
-		--privileged
+		--privileged \
+		--volume /proc:/host/proc \
 		${IMAGE}:${TAG}
 
 build:
