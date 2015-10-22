@@ -1,6 +1,6 @@
-# tunesys
+# autotune.docker
 
-:wrench: TuneSYS is a MUST HAVE (2MB) system tuner for ALL your docker hosts
+:wrench: autotune is a MUST HAVE (2MB) system tuner for ALL your docker hosts
 
 Most Linuxes available over there aren't tuned to be high performance network
 servers, thats why every tech company needs an Ops or Sysadmin guy.
@@ -24,7 +24,7 @@ It has built-in configurable tuners that handles minor settings, such as:
 ## Deploying
 
 ```bash
-docker run -d --privileged cusspvz/tunesys
+docker run -d --privileged cusspvz/autotune
 ```
 
 

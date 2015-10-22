@@ -1,5 +1,5 @@
 TAG := development
-IMAGE := cusspvz/tunesys
+IMAGE := cusspvz/autotune
 
 test:
 	@docker run \
