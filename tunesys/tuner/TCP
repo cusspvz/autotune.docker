@@ -1,0 +1,14 @@
+#!/bin/sh
+. common
+
+while true; do
+
+    setp "sys/net/ipv4/ip_local_port_range" "$net__ipv4__ip_local_port_range_min	$net__ipv4__ip_local_port_range_max"
+    setp "sys/net/ipv4/tcp_fin_timeout" $net__ipv4__tcp_fin_timeout
+    setp "sys/net/ipv4/tcp_tw_recycle" $net__ipv4__tcp_tw_recycle
+    setp "sys/net/ipv4/tcp_tw_reuse" $net__ipv4__tcp_tw_reuse
+    setp "sys/net/ipv4/tcp_max_orphans" $net__ipv4__tcp_max_orphans
+
+    # Sleep
+    sleep $tcp_loop_interval
+done;

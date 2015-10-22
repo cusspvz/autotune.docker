@@ -1,0 +1,28 @@
+#!/bin/sh
+. common
+
+# MEM TUNNER
+
+# Drop Caches
+
+# To free pagecache:
+# echo 1 > /proc/sys/vm/drop_caches
+#
+# To free dentries and inodes:
+# echo 2 > /proc/sys/vm/drop_caches
+#
+# To free pagecache, dentries and inodes:
+# echo 3 > /proc/sys/vm/drop_caches
+
+while true; do
+
+    # Sync before doing anything
+    sync;
+
+    # Drop caches
+    setp "sys/vm/drop_caches" $sys__vm__drop_caches
+
+    # Sleep
+    sleep $cache_loop_interval;
+
+done

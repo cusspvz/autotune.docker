@@ -1,0 +1,50 @@
+#!/bin/sh
+. common
+
+# Check if its running on privileged mode
+ip link add dummy0 type dummy >/dev/null 2>&1 || \
+    throw 1 "Please re-run container with: --privileged"
+
+# Check if /host/proc exists
+[ -d $PROC ] || \
+    throw 2 "Please re-run container with: --volume /proc:$PROC"
+
+# Load tuners
+TUNERS_PIDS=""
+for FILE in $(ls tuner/); do
+    if [ ! -z $(eval "echo \$TUNE_${FILE}") ]; then
+        echo -ne "Starting up $FILE tuner..."
+        /tunesys/tuner/$FILE &
+        _PID=$!
+        echo "Started! $_PID"
+        TUNERS_PIDS="$TUNERS_PIDS $_PID"
+    fi
+done;
+
+graceful_exit () {
+    echo $1
+    echo -ne "Exiting, just waiting for tuners to stop..."
+    for PID in $TUNERS_PIDS; do
+        kill -9 $PID >/dev/null 2>&1
+    done;
+    echo "Tuners stopped"
+    exit 0
+}
+
+trap "graceful_exit \"SIGHUP SIGNAL caught\"" SIGHUP
+trap "graceful_exit \"SIGINT SIGNAL caught\"" SIGINT
+trap "graceful_exit \"SIGKILL SIGNAL caught\"" SIGKILL
+trap "graceful_exit \"SIGTERM SIGNAL caught\"" SIGTERM
+trap "graceful_exit \"SIGSTOP SIGNAL caught\"" SIGSTOP
+
+pids_running () {
+    for PID in $TUNERS_PIDS; do
+        kill -0 $PID >/dev/null 2>&1 || \
+            graceful_exit "PID $PID isn't responding"
+    done;
+}
+
+# Loop infinitely
+while pids_running; do
+    sleep 1;
+done
