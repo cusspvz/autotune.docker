@@ -25,8 +25,8 @@ It has built-in configurable tuners that handles minor settings, such as:
 
 ```bash
 docker run -d \
-    --privileged \
-    --volume /proc:/host/proc \
+    --privileged \ # to tune kernel settings 
+    --net host \ # to tune host network
     cusspvz/autotune
 ```
 

@@ -1,13 +1,14 @@
 #!/bin/sh
 . common
+sync
 
 # Check if its running on privileged mode
-ip link add dummy0 type dummy >/dev/null 2>&1 || \
+echo 1 > $PROC/sys/vm/drop_caches >/dev/null 2>&1 || \
     throw 1 "Please re-run container with: --privileged"
 
 # Check if /host/proc exists
-[ -d $PROC ] || \
-    throw 2 "Please re-run container with: --volume /proc:$PROC"
+[ -f $PROC/sys/net/ipv4/tcp_fin_timeout ] || \
+    throw 2 "Please re-run container with: --net=host"
 
 # Load tuners
 TUNERS_PIDS=""
