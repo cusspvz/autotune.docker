@@ -1,6 +1,6 @@
 # tunesys
 
-:wrench: TuneSYS is an auto system tuner for your docker host
+:wrench: TuneSYS is a MUST HAVE (2MB) system tuner for ALL your docker hosts
 
 Most Linuxes available over there aren't tuned to be high performance network
 servers, thats why every tech company needs an Ops or Sysadmin guy.

@@ -5,10 +5,14 @@ test:
 	@docker run \
 		--rm -ti \
 		--privileged
-		$IMAGE:$TAG
+		${IMAGE}:${TAG}
 
 build:
-	@docker build -t $IMAGE:TAG .
+	@docker build -t ${IMAGE}:${TAG} .
 
 push: build
-	@docker push $IMAGE:$TAG
+	@docker push ${IMAGE}:${TAG}
+
+tag: build push
+	@git tag -a ${TAG}
+	@git push origin --tags
