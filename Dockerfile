@@ -3,7 +3,6 @@ MAINTAINER José Moreira <jose.moreira@findhit.com>
 ADD tunesys /tunesys
 RUN apk add --update docker; \
     rm -rf \
-    /etc/ssl \
     /var/cache/apk/*
 RUN chmod +x /tunesys/run /tunesys/common /tunesys/tuner/*
 ENV PROC=/proc
@@ -23,10 +22,10 @@ ENV TUNE_TCP=1 \
     net__ipv4__tcp_tw_reuse=1 \
     net__ipv4__tcp_max_orphans=0
 
-# DOCKER_IMAGES
+# DOCKER
 ENV TUNE_DOCKER=1 \
-    R_CONTAINERS=false \
-    R_IMAGES=false \
+    docker_remove_containers=1 \
+    docker_remove_images=1 \
     docker_loop_interval=21600
 
 WORKDIR /tunesys
