@@ -2,11 +2,27 @@
 
 while true; do
 
-  echo "Removing docker stoped container's "
-  docker ps -aq --no-trunc | xargs docker rm > /dev/null 2>&1
+  if [ $R_CONTAINERS == true ]; then
 
-  echo "Removing docker images that are not being used"
-  docker images -q | xargs docker rmi > /dev/null 2>&1
+    echo "Removing docker stoped container's "
+    docker ps -aq --no-trunc | xargs docker rm > /dev/null 2>&1
+
+  else
+
+    echo "You choose do not remove stoped docker container's"
+
+  fi
+
+  if [ $R_IMAGES == true ]; then
+
+    echo "Removing docker images that are not being used"
+    docker images -q | xargs docker rmi > /dev/null 2>&1
+
+  else
+
+    echo "You choose do not remove docker images"
+
+  fi
 
   # Sleep
   sleep $docker_loop_interval

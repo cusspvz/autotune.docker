@@ -25,6 +25,8 @@ ENV TUNE_TCP=1 \
 
 # DOCKER_IMAGES
 ENV TUNE_DOCKER=1 \
+    R_CONTAINERS=false \
+    R_IMAGES=false \
     docker_loop_interval=21600
 
 WORKDIR /tunesys

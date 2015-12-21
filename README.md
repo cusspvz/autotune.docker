@@ -20,8 +20,8 @@ It has built-in configurable tuners that handles minor settings, such as:
     - Tunes settings every hour
     - This isn't One Shot, it will act every hour (interval also configurable)
   * Docker
-    - Removes all images that are not being used
-    - Removes all stoped containers
+    - Removes all images that are not being used. Option disable by default `R_IMAGES=false` in Dockerfile
+    - Removes all stoped containers. Option disable by default `R_CONTAINERS=false` in Dockerfile.
 
 
 ## Deploying
@@ -30,7 +30,9 @@ It has built-in configurable tuners that handles minor settings, such as:
 docker run -d \
     --privileged \ # to tune kernel settings
     --net host \ # to tune host network
-    --volume /var/run/docker.sock:/var/run/docker.sock \ # to remove images and container's
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    --env IMAGES=true \ # to remove docker images
+    --env CONTAINERS=true \ # to remove docker container's
     cusspvz/autotune
 ```
 
