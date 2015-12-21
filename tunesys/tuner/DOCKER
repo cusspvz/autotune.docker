@@ -5,7 +5,10 @@ while true; do
   echo "Removing docker stoped container's "
   docker ps -aq --no-trunc | xargs docker rm > /dev/null 2>&1
 
+  echo "Removing docker images that are not being used"
+  docker images -q | xargs docker rmi > /dev/null 2>&1
+
   # Sleep
-  sleep $containers_loop_interval
+  sleep $docker_loop_interval
 
 done;
