@@ -6,6 +6,7 @@ test: build
 		--rm -ti \
 		--privileged \
 		--volume /proc:/host/proc \
+		--volume /var/run/docker.sock:/var/run/docker.sock \
 		${IMAGE}:${TAG}
 
 build:

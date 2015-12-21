@@ -1,0 +1,11 @@
+#!/bin/sh
+
+while true; do
+
+  echo "Removing docker stoped container's "
+  docker ps -aq --no-trunc | xargs docker rm > /dev/null 2>&1
+
+  # Sleep
+  sleep $containers_loop_interval
+
+done;

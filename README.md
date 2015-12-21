@@ -19,14 +19,18 @@ It has built-in configurable tuners that handles minor settings, such as:
     - Replaces hand `sysctl ...` configurations
     - Tunes settings every hour
     - This isn't One Shot, it will act every hour (interval also configurable)
+  * Docker
+    - Removes all images that are not being used
+    - Removes all stoped containers
 
 
 ## Deploying
 
 ```bash
 docker run -d \
-    --privileged \ # to tune kernel settings 
+    --privileged \ # to tune kernel settings
     --net host \ # to tune host network
+    --volume /var/run/docker.sock:/var/run/docker.sock \ # to remove images and container's
     cusspvz/autotune
 ```
 

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+while true; do
+
+  echo "Removing docker images that are not being used"
+  docker images -q | xargs docker rmi > /dev/null 2>&1
+
+  # Sleep
+  sleep $images_loop_interval
+
+done;

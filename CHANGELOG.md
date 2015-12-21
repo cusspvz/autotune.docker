@@ -1,5 +1,10 @@
 ## Upcoming
 
+## 1.0.3
+
+- Remove docker images that are not being used by any container
+- Remove all stoped container's
+
 ## 1.0.2
 
 - Use net instead since proc mount didn't worked for tcp tuning.
