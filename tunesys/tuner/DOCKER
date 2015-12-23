@@ -1,0 +1,22 @@
+#!/bin/sh
+
+while true; do
+
+  if [ $docker_remove_containers == "1" ]; then
+
+    echo "Removing stoped docker container's "
+    docker ps -aq --no-trunc | xargs docker rm > /dev/null 2>&1
+
+  fi
+
+  if [ $docker_remove_containers == "1" ]; then
+
+    echo "Removing docker images that are not being used"
+    docker images -q | xargs docker rmi > /dev/null 2>&1
+
+  fi
+
+  # Sleep
+  sleep $docker_loop_interval
+
+done;
