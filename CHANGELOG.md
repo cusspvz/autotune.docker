@@ -1,5 +1,8 @@
 ## Upcoming
 
+
+## 1.1.0
+
 - Add DOCKER tuner
 
 ## 1.0.2
