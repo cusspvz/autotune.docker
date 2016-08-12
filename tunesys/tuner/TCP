@@ -8,6 +8,7 @@ while true; do
     setp "sys/net/ipv4/tcp_tw_recycle" $net__ipv4__tcp_tw_recycle
     setp "sys/net/ipv4/tcp_tw_reuse" $net__ipv4__tcp_tw_reuse
     setp "sys/net/ipv4/tcp_max_orphans" $net__ipv4__tcp_max_orphans
+    setp "sys/net/ipv4/tcp_challenge_ack_limit" $net__ipv4__tcp_challenge_ack_limit
 
     # Sleep
     sleep $tcp_loop_interval

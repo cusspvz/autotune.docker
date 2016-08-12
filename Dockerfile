@@ -19,7 +19,8 @@ ENV TUNE_TCP=1 \
     net__ipv4__tcp_fin_timeout=20 \
     net__ipv4__tcp_tw_recycle=1 \
     net__ipv4__tcp_tw_reuse=1 \
-    net__ipv4__tcp_max_orphans=0
+    net__ipv4__tcp_max_orphans=0 \
+    net__ipv4__tcp_challenge_ack_limit=999999999
 
 # DOCKER
 ENV TUNE_DOCKER=1 \
