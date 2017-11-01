@@ -1,0 +1,16 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - |
+    export IMAGE=cusspvz/autotune:latest &&
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
+    docker build -t ${IMAGE} . &&
+    docker push ${IMAGE} &&
+    exit 0 || exit 1
+
+branches:
+  only:
+    - master
