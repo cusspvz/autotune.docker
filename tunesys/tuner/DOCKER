@@ -15,6 +15,13 @@ while true; do
     docker images -q | xargs docker rmi
 
   fi
+  
+  if [ $docker_remove_volumes == "1" ]; then
+  
+    echo "Removing unused docker volumes"
+    docker volume ls -qf dangling=true | xargs -r docker volume rm
+  
+  fi
 
   # Sleep
   sleep $docker_loop_interval
