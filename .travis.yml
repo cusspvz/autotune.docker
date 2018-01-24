@@ -6,7 +6,7 @@ services:
 script:
   - |
     export IMAGE=cusspvz/autotune:latest &&
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" &&
+    docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD" &&
     docker build -t ${IMAGE} . &&
     docker push ${IMAGE} &&
     exit 0 || exit 1
